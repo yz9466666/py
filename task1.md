@@ -54,12 +54,8 @@ anaconda环境配置
       False
     空值None
       空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。
-    算数运算符
-    ![]
-    赋值运算符
-    ![]
-    比较运算符
-    ![]
+    算术运算符
+    ![https://github.com/yz9466666/py/blob/master/5.png]
     逻辑运算符
     ![]
     成员运算符
