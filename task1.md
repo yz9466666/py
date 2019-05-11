@@ -12,6 +12,7 @@ anaconda环境配置
   Jython：运行在Java平台上的Python解释器，可以直接把Python代码编译成Java字节码执行。
   IronPython：和Jython类似，只不过IronPython是运行在微软.Net平台上的Python解释器，可以直接把Python代码编译成.Net的字节码。
 2.python初体验
-  print
+  print 和input
   
-  https://www.cnblogs.com/laoliu07/p/10653999.html
+  
+  参考https://www.cnblogs.com/laoliu07/p/10653999.html
