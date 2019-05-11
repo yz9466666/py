@@ -57,7 +57,13 @@ anaconda环境配置
     算术运算符
     ![https://github.com/yz9466666/py/blob/master/5.png]
     逻辑运算符
-    ![]
+    ![https://github.com/yz9466666/py/blob/master/8.png]
     成员运算符
+    ![https://github.com/yz9466666/py/blob/master/9.png]
+    Python身份运算符
+    身份运算符用于比较两个对象的存储单元。
     ![]
-      
+    运算符优先级
+    ![]
+    
+
