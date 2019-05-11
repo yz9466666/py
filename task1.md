@@ -62,8 +62,8 @@ anaconda环境配置
     ![https://github.com/yz9466666/py/blob/master/9.png]
     Python身份运算符
     身份运算符用于比较两个对象的存储单元。
-    ![]
+    ![https://github.com/yz9466666/py/blob/master/11.png]
     运算符优先级
-    ![]
+    ![https://github.com/yz9466666/py/blob/master/22.png]
     
 
