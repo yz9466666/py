@@ -1,0 +1,176 @@
+1.函数关键字
+python中一共含有32个关键字：'false', 'none', 'true', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield'
+--关键字-是Python内置的、具有特殊意义的表示符
+--使用时关键字后面不需要括号
+2.函数的定义
+函数是组织好的，可重复使用的，用来实现单一，或相关联功能的代码段。可以自己定义一个函数。
+--函数-封装了独立功能，可以直接调用
+--函数名(参数)
+以下是简单的定义规则：
+函数代码块以 def 关键词开头，后接函数标识符名称和圆括号()。
+任何传入参数和自变量必须放在圆括号中间。圆括号之间可以用于定义参数。
+函数的第一行语句可以选择性地使用文档字符串—用于存放函数说明。
+函数内容以冒号起始，并且缩进。
+return [表达式] 结束函数，选择性地返回一个值给调用方。不带表达式的return相当于返回 None。
+3.函数参数与作用域
+2.1 位置参数
+2.1 位置参数
+函数根据位置顺序将参数值传入参数
+
+def _testPostion_(a,b):
+	print "the first var is:",a
+	print "the second var is:",b
+
+_testPostion_(5,10)
+
+输出结果：
+the first var is: 5
+the second var is: 10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+2.2 默认参数
+函数部分参数指向默认值，可以不需要在调用时传入该参数函数内就可以使用。
+位置通常是：必传参数在前，默认参数在后。
+若默认参数所在的位置传入了参数，则会覆盖默认值
+def _test02_(name,sex="boy"):
+    print name,"and",sex
+
+_test02_("tyson")
+_test02_("another tyson","girl")
+
+输出结果：
+tyson and boy
+another tyson and girl
+1
+2
+3
+4
+5
+6
+7
+8
+9
+2.3 关键字参数
+最重要的作用是，使用关键字参数调用函数的时候可以不严格按照函数声明时规定的参数的顺序来写。而且函数还能正确识别。
+
+def _test02_(fisrt,second):
+    print "fisrt var is:",fisrt,"and the second var is:",second
+
+_test02_(second="2",fisrt="1")
+
+输出结果：
+fisrt var is: 1 and the second var is: 2
+1
+2
+3
+4
+5
+6
+7
+2.4 非关键字可变参数
+函数可以通过*获取可变数量的参数，并全部放入到元组中，所谓可变就是这些参数可有可无。函数头部分是def func(*tuple)。
+因为参数传入函数后是通过元组存放的，所以没办法辨识参数，因此非关键字可变参数通常用于类似于加法对参数个体顺序不做要求的功能实现。
+案例1
+def f(*args):
+    print args
+
+f("tyson")
+f("tyson","21")
+f("tyson","21","boy")
+
+输出结果
+('tyson',)
+('tyson', '21')
+('tyson', '21', 'boy')
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+案例2
+
+def sum(*args):
+    sum = 0
+    for i in args:
+        sum+=i
+    print sum
+
+sum(1)
+sum(1,2)
+sum(1,2,3)
+
+输出结果
+1
+3
+6
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+2.5 关键字可变参数
+函数可以通过获取可变数量的参数，并全部放入到字典中，所谓可变就是这些参数可有可无**。函数头部分是def func(*dict)。
+与非关键字可变参数最大的不同就是关键字可变参数在调用函数时需要为这些额外的参数指定变量名。
+def dict(**args):
+    print args
+
+
+dict(name="tyson")
+dict(name="laowang",age="21")
+
+输出结果：
+{'name': 'tyson'}
+{'age': '21', 'name': 'laowang'}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+2.6 混合参数
+函数头定义参数列表的时候，可以同时包含位置参数、默认参数、关键字参数、可变参数。
+参数的顺序是有要求的：位置参数（必备参数）→默认参数→可变参数
+def func(x,y=1,*tuple,**dict):
+    print "x:",x
+    print "y:",y
+    print "tuple:",tuple
+    print "dict:",dict
+
+func(10,20,30,name="tyson")
+
+输出结果：
+x: 10
+y: 20
+tuple: (30,)
+dict: {'name': 'tyson'}
+--------------------- 
+作者：tyson Lee 
+来源：CSDN 
+原文：https://blog.csdn.net/chinaltx/article/details/86560805 
+版权声明：本文为博主原创文章，转载请附上博文链接！
