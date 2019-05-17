@@ -14,163 +14,239 @@ python中一共含有32个关键字：'false', 'none', 'true', 'and', 'as', 'ass
 return [表达式] 结束函数，选择性地返回一个值给调用方。不带表达式的return相当于返回 None。
 3.函数参数与作用域
 2.1 位置参数
-2.1 位置参数
-函数根据位置顺序将参数值传入参数
-
-def _testPostion_(a,b):
-	print "the first var is:",a
-	print "the second var is:",b
-
-_testPostion_(5,10)
-
-输出结果：
-the first var is: 5
-the second var is: 10
-1
-2
-3
-4
-5
-6
-7
-8
-9
-2.2 默认参数
-函数部分参数指向默认值，可以不需要在调用时传入该参数函数内就可以使用。
-位置通常是：必传参数在前，默认参数在后。
-若默认参数所在的位置传入了参数，则会覆盖默认值
-def _test02_(name,sex="boy"):
-    print name,"and",sex
-
-_test02_("tyson")
-_test02_("another tyson","girl")
-
-输出结果：
-tyson and boy
-another tyson and girl
-1
-2
-3
-4
-5
-6
-7
-8
-9
-2.3 关键字参数
-最重要的作用是，使用关键字参数调用函数的时候可以不严格按照函数声明时规定的参数的顺序来写。而且函数还能正确识别。
-
-def _test02_(fisrt,second):
-    print "fisrt var is:",fisrt,"and the second var is:",second
-
-_test02_(second="2",fisrt="1")
-
-输出结果：
-fisrt var is: 1 and the second var is: 2
-1
-2
-3
-4
-5
-6
-7
-2.4 非关键字可变参数
-函数可以通过*获取可变数量的参数，并全部放入到元组中，所谓可变就是这些参数可有可无。函数头部分是def func(*tuple)。
-因为参数传入函数后是通过元组存放的，所以没办法辨识参数，因此非关键字可变参数通常用于类似于加法对参数个体顺序不做要求的功能实现。
-案例1
-def f(*args):
-    print args
-
-f("tyson")
-f("tyson","21")
-f("tyson","21","boy")
-
-输出结果
-('tyson',)
-('tyson', '21')
-('tyson', '21', 'boy')
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-案例2
-
-def sum(*args):
-    sum = 0
-    for i in args:
-        sum+=i
-    print sum
-
-sum(1)
-sum(1,2)
-sum(1,2,3)
-
-输出结果
-1
-3
-6
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-2.5 关键字可变参数
-函数可以通过获取可变数量的参数，并全部放入到字典中，所谓可变就是这些参数可有可无**。函数头部分是def func(*dict)。
-与非关键字可变参数最大的不同就是关键字可变参数在调用函数时需要为这些额外的参数指定变量名。
-def dict(**args):
-    print args
+参考https://blog.csdn.net/lxlmycsdnfree/article/details/78595838
+4.函数返回值
+return 则是将 return 后面的部分作为返回值作为函数的输出，可以用变量接走，继续使用该返回值做其它事。
+函数需要先定义后调用，函数体中 return 语句的结果就是返回值。如果一个函数没有 reutrn 语句，其实它有一个隐含的 return 语句，返回值是 None，类型也是 'NoneType'。
+return 语句的作用：
+结束函数调用、返回值
 
 
-dict(name="tyson")
-dict(name="laowang",age="21")
+指定返回值与隐含返回值
+函数体中 return 语句有指定返回值时返回的就是其值
+函数体中没有 return 语句时，函数运行结束会隐含返回一个 None 作为返回值，类型是 NoneType，与 return 、return None 等效，都是返回 None。
 
-输出结果：
-{'name': 'tyson'}
-{'age': '21', 'name': 'laowang'}
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-2.6 混合参数
-函数头定义参数列表的时候，可以同时包含位置参数、默认参数、关键字参数、可变参数。
-参数的顺序是有要求的：位置参数（必备参数）→默认参数→可变参数
-def func(x,y=1,*tuple,**dict):
-    print "x:",x
-    print "y:",y
-    print "tuple:",tuple
-    print "dict:",dict
 
-func(10,20,30,name="tyson")
+return 语句位置与多条 return 语句
+python 函数使用 return 语句返回 "返回值"，可以将其赋给其它变量作其它的用处
+所有函数都有返回值，如果没有 return 语句，会隐式地调用 return None 作为返回值
+一个函数可以存在多条 return 语句，但只有一条可以被执行，如果没有一条 reutrn 语句被执行，同样会隐式调用 return None 作为返回值
+如果有必要，可以显式调用 return None 明确返回一个None(空值对象)作为返回值，可以简写为 return，不过 python 中懒惰即美德，所以一般能不写就不写
+如果函数执行了 return 语句，函数会立刻返回，结束调用，return 之后的其它语句都不会被执行了。
+5.File
+https://www.runoob.com/python/file-methods.html
+6.Os模块
+Python os模块常用函数详解
+当前使用平台：
 
-输出结果：
-x: 10
-y: 20
-tuple: (30,)
-dict: {'name': 'tyson'}
---------------------- 
-作者：tyson Lee 
-来源：CSDN 
-原文：https://blog.csdn.net/chinaltx/article/details/86560805 
-版权声明：本文为博主原创文章，转载请附上博文链接！
+os.name  #返回当前使用平台的代表字符，Windows用'nt'表示，Linux用'posix'表示
+当前路径和文件
+
+os.getcwd()  #返回当前工作目录
+os.listdir(path)  #返回path目录下所有文件列表
+绝对路径
+
+os.path.abspath(path) #返回path的绝对路径
+系统操作：
+
+os.system()  #运行shell命令
+>>>os.system('cmd')  #Windows下打开终端
+>>>os.system('ls')  #Linux下查看当前目录所有文件
+查看文件名或目录：
+
+os.path.split(path)  #将path的目录和文件名分开为元组
+os.path.join(path1,path2,...)  #将path1，怕path2，...进行组合，若path2为绝对路径，则会将path1删除
+os.path.dirname(path)  #返回path中的目录（文件夹部分），结果不包含'\'
+os.path.basename(path)  #返回path中的文件名
+创建目录：
+
+os.mkdir(path)  #创建path目录（只能创建一级目录，如'F:\XXX\WWW'）,在XXX目录下创建WWW目录
+os.makedirs(path)  #创建多级目录（如'F:\XXX\SSS'），在F盘下创建XXX目录，继续在XXX目录下创建SSS目录
+删除文件或目录：
+
+os.remove(path)  #删除文件（必须是文件）
+os.rmdir(path)  #删除path目录(只能删除一级目录，如'F:\XXX\SSS'),只删除SSS目录
+os.removedirs(path)  #删除多级目录（如'F:\XXX\SSS'）,必须为空目录，删除SSS、FFF目录
+更改路径：
+
+os.chdir(path)  #将当前工作目录更改为指定路径path
+查看文件时间：
+
+os.path.getmtime(path)  #返回文件或目录的最后修改时间，结果为秒数
+os.path.getatime(path)  #返回文件或目录的最后访问时间，结果为秒数
+os.path.getctime(path)  #返回文件或目录得创建时间，结果为秒数
+查看文件大小：
+
+os.path.getsize(path)  #返回文件的大小，若是目录则返回0
+查看文件：
+
+os.path.exists(path)  #判断path是否存在，存在返回True,不存在返回False
+os.path.isfile(path)  #判断path是否为文件，是返回True,不是返回False
+os.path.isdir(path)  #判断path是否目录，是返回True，不是返回False
+表现形式参数：
+
+os.sep  #返回当前操作系统特定的路径分隔符
+os.linesep  #返回当前平台使用的行终止符
+os.extsep  #返回文件名与扩展名的分隔符
+ 获取文件和目录：
+
+os.walk(path)   #递归返回path下的目录（包括path目录）、子目录、文件名的三元组
+获得shell命令返回值：
+
+fp=os.popen(cmd)   #打开命令cmd或从命令cmd打开管道，返回值是连接到管道的文件对象
+rlt=fp.read()或 rlt=fp.readlines()  #读取结果
+ 
+
+7.Datetime模块
+datetime模块
+datatime模块重新封装了time模块，提供更多接口，提供的类有：date,time,datetime,timedelta,tzinfo。
+
+1、date类
+
+datetime.date(year, month, day)
+
+静态方法和字段
+
+date.max、date.min：date对象所能表示的最大、最小日期；
+date.resolution：date对象表示日期的最小单位。这里是天。
+date.today()：返回一个表示当前本地日期的date对象；
+date.fromtimestamp(timestamp)：根据给定的时间戮，返回一个date对象；
+ output
+ 
+
+方法和属性
+
+复制代码
+d1 = date(2011,06,03)#date对象
+d1.year、date.month、date.day：年、月、日；
+d1.replace(year, month, day)：生成一个新的日期对象，用参数指定的年，月，日代替原有对象中的属性。（原有对象仍保持不变）
+d1.timetuple()：返回日期对应的time.struct_time对象；
+d1.weekday()：返回weekday，如果是星期一，返回0；如果是星期2，返回1，以此类推；
+d1.isoweekday()：返回weekday，如果是星期一，返回1；如果是星期2，返回2，以此类推；
+d1.isocalendar()：返回格式如(year，month，day)的元组；
+d1.isoformat()：返回格式如'YYYY-MM-DD’的字符串；
+d1.strftime(fmt)：和time模块format相同。
+复制代码
+ output
+ 
+
+2、time类
+
+datetime.time(hour[ , minute[ , second[ , microsecond[ , tzinfo] ] ] ] ) 
+
+静态方法和字段
+
+time.min、time.max：time类所能表示的最小、最大时间。其中，time.min = time(0, 0, 0, 0)， time.max = time(23, 59, 59, 999999)；
+time.resolution：时间的最小单位，这里是1微秒；
+ 
+
+方法和属性
+
+复制代码
+t1 = datetime.time(10,23,15)#time对象
+t1.hour、t1.minute、t1.second、t1.microsecond：时、分、秒、微秒；
+t1.tzinfo：时区信息；
+t1.replace([ hour[ , minute[ , second[ , microsecond[ , tzinfo] ] ] ] ] )：创建一个新的时间对象，用参数指定的时、分、秒、微秒代替原有对象中的属性（原有对象仍保持不变）；
+t1.isoformat()：返回型如"HH:MM:SS"格式的字符串表示；
+t1.strftime(fmt)：同time模块中的format；
+复制代码
+ output
+3、datetime类
+
+datetime相当于date和time结合起来。
+datetime.datetime (year, month, day[ , hour[ , minute[ , second[ , microsecond[ , tzinfo] ] ] ] ] )
+
+静态方法和字段
+
+复制代码
+datetime.today()：返回一个表示当前本地时间的datetime对象；
+datetime.now([tz])：返回一个表示当前本地时间的datetime对象，如果提供了参数tz，则获取tz参数所指时区的本地时间；
+datetime.utcnow()：返回一个当前utc时间的datetime对象；#格林威治时间
+datetime.fromtimestamp(timestamp[, tz])：根据时间戮创建一个datetime对象，参数tz指定时区信息；
+datetime.utcfromtimestamp(timestamp)：根据时间戮创建一个datetime对象；
+datetime.combine(date, time)：根据date和time，创建一个datetime对象；
+datetime.strptime(date_string, format)：将格式字符串转换为datetime对象；
+复制代码
+ 
+
+ output
+ 
+
+方法和属性
+
+复制代码
+dt=datetime.now()#datetime对象
+dt.year、month、day、hour、minute、second、microsecond、tzinfo：
+dt.date()：获取date对象；
+dt.time()：获取time对象；
+dt. replace ([ year[ , month[ , day[ , hour[ , minute[ , second[ , microsecond[ , tzinfo] ] ] ] ] ] ] ])：
+dt. timetuple ()
+dt. utctimetuple ()
+dt. toordinal ()
+dt. weekday ()
+dt. isocalendar ()
+dt. isoformat ([ sep] )
+dt. ctime ()：返回一个日期时间的C格式字符串，等效于time.ctime(time.mktime(dt.timetuple()))；
+dt. strftime (format)
+复制代码
+4.timedelta类，时间加减
+
+使用timedelta可以很方便的在日期上做天days，小时hour，分钟，秒，毫秒，微妙的时间计算，如果要计算月份则需要另外的办法。
+
+复制代码
+#coding:utf-8
+from  datetime import *
+
+dt = datetime.now()
+#日期减一天
+dt1 = dt + timedelta(days=-1)#昨天
+dt2 = dt - timedelta(days=1)#昨天
+dt3 = dt + timedelta(days=1)#明天
+delta_obj = dt3-dt
+print type(delta_obj),delta_obj#<type 'datetime.timedelta'> 1 day, 0:00:00
+print delta_obj.days ,delta_obj.total_seconds()#1 86400.0
+复制代码
+ 5、tzinfo时区类
+
+复制代码
+#! /usr/bin/python
+# coding=utf-8
+
+from datetime import datetime, tzinfo,timedelta
+
+"""
+tzinfo是关于时区信息的类
+tzinfo是一个抽象类，所以不能直接被实例化
+"""
+class UTC(tzinfo):
+    """UTC"""
+    def __init__(self,offset = 0):
+        self._offset = offset
+
+    def utcoffset(self, dt):
+        return timedelta(hours=self._offset)
+
+    def tzname(self, dt):
+        return "UTC +%s" % self._offset
+
+    def dst(self, dt):
+        return timedelta(hours=self._offset)
+
+#北京时间
+beijing = datetime(2011,11,11,0,0,0,tzinfo = UTC(8))
+print "beijing time:",beijing
+#曼谷时间
+bangkok = datetime(2011,11,11,0,0,0,tzinfo = UTC(7))
+print "bangkok time",bangkok
+#北京时间转成曼谷时间
+print "beijing-time to bangkok-time:",beijing.astimezone(UTC(7))
+
+#计算时间差时也会考虑时区的问题
+timespan = beijing - bangkok
+print "时差:",timespan
+
+#Output==================
+# beijing time: 2011-11-11 00:00:00+08:00
+# bangkok time 2011-11-11 00:00:00+07:00
+# beijing-time to bangkok-time: 2011-11-10 23:00:00+07:00
+# 时差: -1 day, 23:00:00
